@@ -1,8 +1,7 @@
-//Fica responsável por todas as funções das rotas que foram criadas no ProductsRoutes.js
 
-let controller = []; //Variavel para armazenar todas as operações
+let controller = [];
 
-//Renderiza a teal inicial
+//Renderiza a tela inicial
 controller.telaInicial = (req, res) => {
         res.render('products');
         console.log(controller)
@@ -13,7 +12,7 @@ controller.listaProdutos = (req, res) => { //Função do express
     req.getConnection (( error, conn ) => { // Método responsável por pedir uma conexão ao MySQL
         conn.query('SELECT * FROM produto', (error, productsDB) => { //Posso tratar o erro ou os dados que vem do BD(productsDB)
         if(error) {
-            res.json('Erro ao listar produtos' + error); //Mostra o erro no navegador
+            res.json('Erro ao listar produtos' + error);
         }
         res.render('products_list', { //Renderiza a tela, o html da products_list.ejs dentro da view
             data: productsDB //Armazena os dados do banco(productsDB) dentro do data  
@@ -31,14 +30,12 @@ controller.cadastraProdutos = (req, res) => {
                 res.json('Erro ao inserir produto ' + error)
             }
             res.redirect(303,'/')
-            //303 redirecionamento de aplicações web para um novo URI, especialmente após um HTTP POST
 
        })
    })  
   
 }
 
-//Método GET do editar para buscar os dados do banco e preencher os inputs da pagina products_edit automatico
 controller.editarProdutos = (req, res) => {
 
     const id = req.params.id; //Recebe o id do parâmetro da url

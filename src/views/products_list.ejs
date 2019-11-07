@@ -24,11 +24,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                <!-- Quando consulto na base de dados me devolve um Array, que é acessado pelo objeto data -->
                     <% if ( data ) { %> <!-- Se tivermos registros-->
                         <% for (let i = 0; i < data.length; i++ ) { %>
                             <tr>
-                                <td> <%= data[i].codigo %> </td> <!-- O = é para dizer para ele interpretar os dados, e não somente o javaScript-->
+                                <td> <%= data[i].codigo %> </td>
                                 <td> <%= data[i].nome %> </td>
                                 <td> <%= data[i].quantidade %> </td>
                                 <td> <%= data[i].preco %> </td>
