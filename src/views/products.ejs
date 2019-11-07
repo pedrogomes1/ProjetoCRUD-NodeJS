@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>CRUD - Produtos</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand"> CRUD</a>
+    </nav>
+
+    <div class="container col-md-6 mt-5">
+        <h1 class="display-4 text-center p-4"> <strong>Cadastro de Produtos</strong></h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/produtos/add" method="post">
+                    <div class="form-group">
+                        <label><strong>Nome:</strong></label>
+                        <input type="text" name="nome" id="nome" placeholder="Nome do produto" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>Quantidade:</strong></label>
+                        <input type="number" name="quantidade" id="qtd" placeholder="Informe a quantidade" min="1"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>Preço:</strong></label>
+                        <input type="number" name="preco" id="preco" placeholder="Informe o preço" min="1" class="form-control"
+                            step=".01" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg" onclick="alert('Cadastrado com sucesso')">Cadastar</button>
+                        <a href="/produtos/productslist" class="btn btn-primary btn-lg">Listar </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

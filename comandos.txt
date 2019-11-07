@@ -1,0 +1,8 @@
+#Instalação do package.json
+npm init -y
+
+#Instalação de todos os módulos e dependencias
+npm install express mysql express-myconnection ejs morgan
+
+#Instalação do nodemon
+npm install nodemon -D

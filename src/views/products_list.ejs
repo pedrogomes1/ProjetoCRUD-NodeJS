@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Lista - Produtos</title>
+</head>
+
+    <body>
+            <nav class="navbar navbar-dark bg-dark">
+                <a href ="/" class="navbar-brand"> CRUD</a>
+            </nav>
+        <div class="container">
+            <div class="row mt-5 text-center">
+                <h1 class="display-4 mx-auto p-4"> <strong>Lista de Produtos</strong></h1>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <!-- Quando consulto na base de dados me devolve um Array, que é acessado pelo objeto data -->
+                    <% if ( data ) { %> <!-- Se tivermos registros-->
+                        <% for (let i = 0; i < data.length; i++ ) { %>
+                            <tr>
+                                <td> <%= data[i].codigo %> </td> <!-- O = é para dizer para ele interpretar os dados, e não somente o javaScript-->
+                                <td> <%= data[i].nome %> </td>
+                                <td> <%= data[i].quantidade %> </td>
+                                <td> <%= data[i].preco %> </td>
+                                <td>
+                                
+                                    <button class="btn btn-danger" onclick="deletar('<%= data[i].codigo %>')"> 
+                                        Excluir
+                                    </button>
+
+                                    <a href="/produtos/update/<%= data[i].codigo %>" class="btn btn-info">
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %> <!-- fim do For-->
+                    <% } %> <!-- fim do IF --> 
+                    </tbody>
+                </table>
+
+                <a href="/" class="btn btn-primary btn-lg mx-auto">Voltar</a>
+            </div>
+        </div>
+         
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+      <script> 
+
+            function deletar(id){
+                
+                let valida = confirm('Deseja realmente excluir o registro?');
+                    if (valida == true) {
+                        alert ('Excluído com sucesso')
+                  } else {
+                      return false;
+                  }
+
+         $(document).ready(function(){
+                $.ajax({
+                    type: "DELETE",         
+                    url: "/produtos/delete/" + id,
+                    context: this,
+
+                    success: function () {
+                    }
+            });
+
+            window.location.reload();
+     });
+    }
+            
+      </script>
+       
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>CRUD - Produtos</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand"> CRUD</a>
+    </nav>
+
+    <div class="container col-md-6 mt-5">
+        <h1 class="display-4 p-4 text-center"> <strong>Editar Produtos</strong></h1>
+        <div class="card">
+            <div class="card-body">
+                <form>
+
+                    <div class="form-group">
+                        <label><strong>Codigo:</strong></label>
+                        <input type="number" name="codigo" id="codigo" value="<%= data.codigo %>" class="form-control"
+                            required disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>Nome:</strong></label>
+                        <input type="text" name="nome" id="nomeProduto" value="<%= data.nome %>" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>Quantidade:</strong></label>
+                        <input type="tel" name="quantidade" id="qtd" value="<%= data.quantidade%>" min="1"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><strong>Preco:</strong></label>
+                        <input type="tel" name="preco" id="preco" value="<%=data.preco%>" min="1" class="form-control"
+                            step=".01" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg" onclick="editar('<%= data.codigo %>')">
+                            Editar </button>
+                        <a href="/produtos/productslist" class="btn btn-primary btn-lg mx-auto btn-lg">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+
+    <script>
+
+        function editar(id) {
+
+            var user = {
+                'codigo': $("#codigo").val(),
+                'nome': $("#nomeProduto").val(),
+                'quantidade': $("#qtd").val(),
+                'preco': $("#preco").val(),
+            };
+            
+
+            $.ajax({
+                type: "PUT",
+                context: this,
+                url: "/produtos/update/" + id,
+                data: user,
+                success: function (data) {
+                }
+
+            });
+            alert('Editado com sucesso!!')
+            window.location.reload();
+        }
+
+
+    </script>
+</body>
+
+</html>
